@@ -3,7 +3,7 @@ import time
 
 #* Initial pleasentries
 print('Welcome to hangman')
-name = input('Enter your name')
+name = input('Enter your name \n')
 time.sleep(2)
 
 #  Define the global variables for the other functions
@@ -21,13 +21,6 @@ def main():
     display = '_'*length
     already_guessed = []
     play_game = ""
-
-def loop():
-    again=('Would you like to play again? \n Y/N')
-    if again== 'Y' or 'y':
-    
-    
-    
     
  #  Main game function    
 def hangman():
@@ -37,14 +30,14 @@ def hangman():
     global already_guessed
     global play_game
     limit = 5
-    guess = input('This is the word '+ display + ' Enter your guess')
+    guess = input('This is the word '+ display + ' Enter your guess \n')
     guess = guess.strip()
     if len(guess.strip()) == 0 or len(guess.strip())>=2:
         print('Invalid guess')
         time.sleep(2)
         hangman()
     elif guess in word:
-        already_guessed = already_guessed.append(guess)
+        already_guessed.extend(guess)
         index = word.find(guess)
         word = word[:index] + '_' + word[index +1:]
         display = display[:index] + guess + display[index+1:]
@@ -106,8 +99,8 @@ def hangman():
             print('The word was ', already_guessed, word)
     
     if word == '_':
-        print('Yay! You have guessed the word.')
-        loop()
+        print('Yay! You have guessed the word. Well done, ' ,name,'!')
+        exit()
     elif count != limit:
         hangman()
         
